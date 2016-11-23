@@ -13,7 +13,6 @@ public class TopologyMain {
 		// Create Config instance for cluster configuration
 		Config config = new Config();
 		config.setDebug(true);
-		config.setNumWorkers(1);
 
 		//
 		TopologyBuilder builder = new TopologyBuilder();
@@ -22,11 +21,11 @@ public class TopologyMain {
 
 		builder.setBolt("SeedMatch", new SeedMatchBolt(), 1).shuffleGrouping("RNASpout","streamSpout");
 
-	//	builder.setBolt("EnergyBolt", new EnergyBolt()).shuffleGrouping("SeedMatch");
+		builder.setBolt("EnergyBolt", new EnergyBolt(), 1).shuffleGrouping("SeedMatch","seedStream");
 
-	//	builder.setBolt("Accessibility", new AccessibilityBolt()).shuffleGrouping("EnergyBolt");
+		builder.setBolt("Accessibility", new AccessibilityBolt(), 1).shuffleGrouping("EnergyBolt","energyStream");
 
-	//	builder.setBolt("Results", new resultsBolt()).fieldsGrouping("Accessibility", new Fields("call"));
+		builder.setBolt("Results", new resultsBolt(), 1).shuffleGrouping("Accessibility", "accessibilityStream");
 
 		if (args != null && args.length > 0) {
 			try {
@@ -37,7 +36,7 @@ public class TopologyMain {
 		} else {
 			LocalCluster cluster = new LocalCluster();
 			cluster.submitTopology(TOPOLOGY_NAME, config, builder.createTopology());
-			Utils.sleep(20000);
+			Utils.sleep(10000);
 			cluster.shutdown();
 }
 	}

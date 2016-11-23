@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
 
-import org.apache.storm.shade.com.twitter.chill.Base64.OutputStream;
+import java.io.OutputStream;
 import org.apache.storm.task.OutputCollector;
 import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.IRichBolt;
@@ -21,6 +21,7 @@ public class AccessibilityBolt implements IRichBolt {
 	 */
 	private static final long serialVersionUID = 1L;
 	private OutputCollector collector;
+	private Map mapConf;
 
 	@Override
 	public void cleanup() {
@@ -30,16 +31,16 @@ public class AccessibilityBolt implements IRichBolt {
 
 	@Override
 	public void execute(Tuple tuple) {
-		String miRNA_id = tuple.getString(0);
-		String miRNA = tuple.getString(1);
-		String lncRNA_id = tuple.getString(2);
-		String lncRNA = tuple.getString(3);
-		String rev_mre = tuple.getString(4);
-		int position = tuple.getInteger(5);
-		float DG_binding = tuple.getFloat(6);
-		float DG_duplex = tuple.getFloat(7);
-		String Sequence = tuple.getString(8);
-		String code = tuple.getString(9);
+		String miRNA_id = tuple.getValueByField("miRNA_id").toString();
+		String miRNA = tuple.getValueByField("miRNA").toString();
+		String lncRNA_id = tuple.getValueByField("lncRNA_id").toString();
+		String lncRNA = tuple.getValueByField("lncRNA").toString();
+		String rev_mre = tuple.getValueByField("rev_mre").toString();
+		int position = (int)tuple.getValueByField("position");
+		float DG_binding = (float)tuple.getValueByField("dg_binding"); // revisar
+		float DG_duplex = (float)tuple.getValueByField("dg_duplex");
+		String Sequence = tuple.getValueByField("sequence").toString();
+		String code = tuple.getValueByField("code").toString();
 		
 		
         String window = "";
@@ -93,7 +94,7 @@ public class AccessibilityBolt implements IRichBolt {
             BufferedReader _input = new BufferedReader(new InputStreamReader(p.getInputStream()));
             
             // Generate response to command
-            OutputStream ops = (OutputStream) p.getOutputStream();
+            OutputStream ops = p.getOutputStream();
             ops.write(window.getBytes());
             ops.close();            
 
@@ -144,7 +145,7 @@ public class AccessibilityBolt implements IRichBolt {
             BufferedReader input_ = new BufferedReader(new InputStreamReader(p_.getInputStream()));
             
             // Generate response to command
-            OutputStream ops_ = (OutputStream)p_.getOutputStream();
+            OutputStream ops_ = p_.getOutputStream();
             ops_.write(dg1_param.getBytes());
             ops_.close();            
 
@@ -170,7 +171,7 @@ public class AccessibilityBolt implements IRichBolt {
         double formated_dgOpen = Math.round(dgOpen*100.0) / 100.0;
         //results r=new results();
         //r.printResults(miRNA_id, miRNA, lncRNA_id, lncRNA, rev_mre, position, DG_duplex, DG_binding, formated_dgOpen);
-       collector.emit(new Values(miRNA_id,miRNA,lncRNA_id,lncRNA,rev_mre,position,DG_duplex,formated_dgOpen,Sequence,code));
+       this.collector.emit("accessibilityStream",new Values(miRNA_id,miRNA,lncRNA_id,lncRNA,rev_mre,position,DG_duplex,formated_dgOpen,Sequence,code));
        
 		
 	}
@@ -183,14 +184,14 @@ public class AccessibilityBolt implements IRichBolt {
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declare(new Fields("miRNa_id","miRNA","lncRNA_id","lncRNA","rev_mre","position","DG_duplex","Open","sequence","code"));
+		declarer.declareStream("accessibilityStream",new Fields("miRNa_id","miRNA","lncRNA_id","lncRNA","rev_mre","position","DG_duplex","Open","sequence","code"));
 		
 	}
 
 	@Override
 	public Map<String, Object> getComponentConfiguration() {
 		// TODO Auto-generated method stub
-		return null;
+		return mapConf;
 	}
 
 }

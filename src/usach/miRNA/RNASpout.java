@@ -73,7 +73,7 @@ public class RNASpout implements IRichSpout{
         
         FileOutputStream o;
         try{
-                o = new FileOutputStream("results.csv");
+                o = new FileOutputStream("/home/ian/Escritorio/results.csv");
                 //mir_id, lncRNA transcript id, position of seed in transcript, dG duplex, dG binding, dG open, ddG
                 o.write( ("miRNA ID,lncRNA ID,Position of Binding,Mínimum Free Energy,Accessibility Energy,Energy Region 3,Energy Region 5,Matches,Missmatches,AU,GC,GU,Nucloetids on Bulge,Cadena1,Cadena2,Cadena3,Cadena4,Cadena5\n").getBytes() );
                 o.close();
@@ -126,8 +126,7 @@ public class RNASpout implements IRichSpout{
 				for(int j = 0; j < lncRNA.size() ; j++){k++;
 					//Formato: miRNA_id LLLL miRNA_code LLLL lncRNA_id LLLL lncRNA_code
 					String str_to_send = miRNA.get(i) + "LLLL" + lncRNA.get(j);
-					
-                    Values values = new Values(str_to_send);
+					Values values = new Values(str_to_send);
 					this.collector.emit("streamSpout",values);
                 
 				}

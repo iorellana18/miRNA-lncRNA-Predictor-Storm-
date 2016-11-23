@@ -20,6 +20,7 @@ public class resultsBolt implements IRichBolt{
 	 */
 	private static final long serialVersionUID = 1L;
 	private OutputCollector collector;
+	private Map config;
 	
 	private static Float precision(int decimalPlace, Float d) {
         BigDecimal bd = new BigDecimal(Float.toString(d));
@@ -35,18 +36,18 @@ public class resultsBolt implements IRichBolt{
 
 	@Override
 	public void execute(Tuple tuple) {
-	   
-	    String miRNA_id = tuple.getString(0);
-	    String lncRNA_id = tuple.getString(2);
-	    String position = tuple.getInteger(5).toString();
-	    float dg_duplex = tuple.getFloat(6);
-	    float dg_Open = tuple.getFloat(7);
+		 /*  
+	    String miRNA_id = tuple.getValueByField("miRNA_id").toString();
+	    String lncRNA_id = tuple.getValueByField("lncRNA_id").toString();
+	    String position = tuple.getValueByField("position").toString();
+	    float dg_duplex = (float)tuple.getValueByField("DG_duplex");
+	    float dg_Open = (float)tuple.getValueByField("Open");
 	     
         float result_ddg = dg_duplex -dg_Open; 
         String result = Float.toString(precision(2,result_ddg));//DG duplex(minimum free energy) - DG open
         String strDuplex = Float.toString(dg_duplex);
         
-        //Generate CSV outfile
+      //Generate CSV outfile
         FileOutputStream o;
         if (result_ddg < 0) {
             try{
@@ -58,7 +59,8 @@ public class resultsBolt implements IRichBolt{
                 e.printStackTrace();
             }
         }
-        collector.ack(tuple);
+*/
+        
 		
 	}
 
@@ -70,14 +72,14 @@ public class resultsBolt implements IRichBolt{
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declare(new Fields("call"));
+		
 		
 	}
 
 	@Override
 	public Map<String, Object> getComponentConfiguration() {
 		// TODO Auto-generated method stub
-		return null;
+		return config;
 	}
 
 }

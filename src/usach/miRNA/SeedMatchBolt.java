@@ -83,9 +83,8 @@ public class SeedMatchBolt implements IRichBolt {
 					// mre y pos son los diferentes en cada emit
 					// formato de energía requiere mre en dirección 5' - 3'
 					// ->rev_mre
-					System.out.println("AHASAJAKSJHSKJA");
 					Values values = new Values(miRNA_id,miRNA,rev_mre,lncRNA_id,lncRNA,position);
-					this.collector.emit("streamSeed",tuple,values);
+					this.collector.emit("seedStream",values);
 				}
 
 			}
@@ -98,7 +97,7 @@ public class SeedMatchBolt implements IRichBolt {
 	}
 
 	@Override
-	public void prepare(Map arg0, TopologyContext arg1, OutputCollector collector) {
+	public void prepare(Map mapConf, TopologyContext arg1, OutputCollector collector) {
 		this.collector = collector;
 		this.mapConf = mapConf;
 
@@ -106,7 +105,7 @@ public class SeedMatchBolt implements IRichBolt {
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declareStream("streamSeed", new Fields("miRNA_id","miRNA","mre","lncRNA_id","lncRNA","position"));
+		declarer.declareStream("seedStream", new Fields("miRNA_id","miRNA","mre","lncRNA_id","lncRNA","position"));
 
 	}
 
