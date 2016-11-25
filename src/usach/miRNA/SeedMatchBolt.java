@@ -84,7 +84,8 @@ public class SeedMatchBolt implements IRichBolt {
 					// formato de energía requiere mre en dirección 5' - 3'
 					// ->rev_mre
 					Values values = new Values(miRNA_id,miRNA,rev_mre,lncRNA_id,lncRNA,position);
-					this.collector.emit("seedStream",values);
+					this.collector.emit("seedStream",tuple,values);
+					
 				}
 
 			}

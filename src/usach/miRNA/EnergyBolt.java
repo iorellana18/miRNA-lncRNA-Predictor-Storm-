@@ -31,6 +31,7 @@ public class EnergyBolt implements IRichBolt {
 
 	@Override
 	public void execute(Tuple tuple) {
+		
 			String miRNA_id = tuple.getValueByField("miRNA_id").toString();
 			String miRNA = tuple.getValueByField("miRNA").toString();
 			String rev_mre = tuple.getValueByField("mre").toString(); // miRNA Reecognition Element
@@ -73,7 +74,7 @@ public class EnergyBolt implements IRichBolt {
 	                flag++;
 	                dg_duplex = Float.parseFloat(number);
 	                dg_duplex = dg_duplex*-1.0f;
-	                System.out.println(seq); 
+	               // System.out.println("\n"+seq+"\n"); 
 	                Sequence=seq;
 	                code=parts[0];
 	            }
@@ -93,7 +94,7 @@ public class EnergyBolt implements IRichBolt {
 	    }
 	        
 	       Values values = new Values(miRNA_id,miRNA,lncRNA_id,lncRNA,rev_mre,position,dg_binding,dg_duplex,Sequence,code);
-	       this.collector.emit("energyStream",values);
+	       this.collector.emit("energyStream",tuple,values);
 		
 	}
 

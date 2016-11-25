@@ -36,8 +36,8 @@ public class TopologyMain {
 		} else {
 			LocalCluster cluster = new LocalCluster();
 			cluster.submitTopology(TOPOLOGY_NAME, config, builder.createTopology());
-			Utils.sleep(10000);
+			//Utils.sleep(100000);
 			cluster.shutdown();
-}
+		}
 	}
 }

@@ -36,14 +36,14 @@ public class resultsBolt implements IRichBolt{
 
 	@Override
 	public void execute(Tuple tuple) {
-		 /*  
+		   
 	    String miRNA_id = tuple.getValueByField("miRNA_id").toString();
 	    String lncRNA_id = tuple.getValueByField("lncRNA_id").toString();
 	    String position = tuple.getValueByField("position").toString();
 	    float dg_duplex = (float)tuple.getValueByField("DG_duplex");
-	    float dg_Open = (float)tuple.getValueByField("Open");
-	     
-        float result_ddg = dg_duplex -dg_Open; 
+	    double dg_Open = (double)tuple.getValueByField("Open");
+	   
+        float result_ddg = dg_duplex - (float)dg_Open; 
         String result = Float.toString(precision(2,result_ddg));//DG duplex(minimum free energy) - DG open
         String strDuplex = Float.toString(dg_duplex);
         
@@ -59,7 +59,7 @@ public class resultsBolt implements IRichBolt{
                 e.printStackTrace();
             }
         }
-*/
+
         
 		
 	}

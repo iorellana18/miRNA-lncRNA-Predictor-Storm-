@@ -109,7 +109,7 @@ public class AccessibilityBolt implements IRichBolt {
                     number = number.substring(1,number.length()-1);
                     dg0 = Float.parseFloat(number);
                     dg0 = dg0*-1.0f; // Free energy of ensemble
-                    //System.out.println("dg0: " + dg0); 
+                    System.out.println("\n\ndg0: " + dg0+"\n\n"); 
                 }
             }
             _input.close();
@@ -184,7 +184,7 @@ public class AccessibilityBolt implements IRichBolt {
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declareStream("accessibilityStream",new Fields("miRNa_id","miRNA","lncRNA_id","lncRNA","rev_mre","position","DG_duplex","Open","sequence","code"));
+		declarer.declareStream("accessibilityStream",new Fields("miRNA_id","miRNA","lncRNA_id","lncRNA","rev_mre","position","DG_duplex","Open","sequence","code"));
 		
 	}
 

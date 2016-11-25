@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Stack;
 
 import org.apache.storm.spout.SpoutOutputCollector;
 import org.apache.storm.task.TopologyContext;
@@ -23,7 +24,7 @@ public class RNASpout implements IRichSpout{
 	private SpoutOutputCollector collector;
 	private TopologyContext context;
 	private Map conf;
-	
+	Stack stack = new Stack();
 	
 	@Override
 	public void ack(Object arg0) {
@@ -57,7 +58,22 @@ public class RNASpout implements IRichSpout{
 
 	@Override
 	public void nextTuple() {
-        //Lee archivos .fa y los guarda en buffer
+        while(stack.isEmpty()==false){
+        	Values values = new Values(stack.pop());
+        	this.collector.emit("streamSpout",values);
+        }
+	
+	}
+
+	@Override
+	public void open(Map conf, TopologyContext context, SpoutOutputCollector collector) {
+		this.context=context;
+		this.collector=collector;
+		this.conf = conf;
+		
+		
+		
+		//Lee archivos .fa y los guarda en buffer
         FileReader miRNA_Reader, lnc_Reader;
         ArrayList<String> miRNA = new ArrayList();
         ArrayList<String> lncRNA = new ArrayList();
@@ -126,20 +142,11 @@ public class RNASpout implements IRichSpout{
 				for(int j = 0; j < lncRNA.size() ; j++){k++;
 					//Formato: miRNA_id LLLL miRNA_code LLLL lncRNA_id LLLL lncRNA_code
 					String str_to_send = miRNA.get(i) + "LLLL" + lncRNA.get(j);
-					Values values = new Values(str_to_send);
-					this.collector.emit("streamSpout",values);
+					stack.push(str_to_send);
                 
 				}
 			}	
 		} 
-		
-	}
-
-	@Override
-	public void open(Map conf, TopologyContext context, SpoutOutputCollector collector) {
-		this.context=context;
-		this.collector=collector;
-		this.conf = conf;
 		
 	}
 
