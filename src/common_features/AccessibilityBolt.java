@@ -1,4 +1,4 @@
-package usach.miRNA;
+package common_features;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,6 +13,8 @@ import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.Values;
+
+import EDA.RNAStructure;
 
 public class AccessibilityBolt implements IRichBolt {
 
@@ -31,12 +33,10 @@ public class AccessibilityBolt implements IRichBolt {
 
 	@Override
 	public void execute(Tuple tuple) {
-		String miRNA_id = tuple.getValueByField("miRNA_id").toString();
-		String miRNA = tuple.getValueByField("miRNA").toString();
-		String lncRNA_id = tuple.getValueByField("lncRNA_id").toString();
-		String lncRNA = tuple.getValueByField("lncRNA").toString();
-		String rev_mre = tuple.getValueByField("rev_mre").toString();
-		int position = (int)tuple.getValueByField("position");
+		RNAStructure RNA = (RNAStructure) tuple.getValueByField("RNA");
+		String miRNA = RNA.getMiRNA();
+		String lncRNA = RNA.getLncRNA();
+		String rev_mre = RNA.getMre();
 		float DG_binding = (float)tuple.getValueByField("dg_binding"); // revisar
 		float DG_duplex = (float)tuple.getValueByField("dg_duplex");
 		String Sequence = tuple.getValueByField("sequence").toString();
@@ -109,7 +109,6 @@ public class AccessibilityBolt implements IRichBolt {
                     number = number.substring(1,number.length()-1);
                     dg0 = Float.parseFloat(number);
                     dg0 = dg0*-1.0f; // Free energy of ensemble
-                    System.out.println("\n\ndg0: " + dg0+"\n\n"); 
                 }
             }
             _input.close();
@@ -171,7 +170,7 @@ public class AccessibilityBolt implements IRichBolt {
         double formated_dgOpen = Math.round(dgOpen*100.0) / 100.0;
         //results r=new results();
         //r.printResults(miRNA_id, miRNA, lncRNA_id, lncRNA, rev_mre, position, DG_duplex, DG_binding, formated_dgOpen);
-       this.collector.emit("accessibilityStream",new Values(miRNA_id,miRNA,lncRNA_id,lncRNA,rev_mre,position,DG_duplex,formated_dgOpen,Sequence,code));
+       this.collector.emit("accessibilityStream",new Values(RNA,DG_duplex,formated_dgOpen,Sequence,code));
        
 		
 	}
@@ -184,7 +183,7 @@ public class AccessibilityBolt implements IRichBolt {
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declareStream("accessibilityStream",new Fields("miRNA_id","miRNA","lncRNA_id","lncRNA","rev_mre","position","DG_duplex","Open","sequence","code"));
+		declarer.declareStream("accessibilityStream",new Fields("RNA","DG_duplex","Open","sequence","code"));
 		
 	}
 

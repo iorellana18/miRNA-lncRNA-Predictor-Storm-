@@ -7,6 +7,12 @@ import org.apache.storm.topology.TopologyBuilder;
 import org.apache.storm.tuple.Fields;
 import org.apache.storm.utils.Utils;
 
+import common_features.AccessibilityBolt;
+import common_features.EnergyBolt;
+import common_features.SeedMatchBolt;
+import common_features.resultsBolt;
+import inSite_features.EnergyOfAnotherRegionsBolt;
+
 public class TopologyMain {
 	private static final String TOPOLOGY_NAME = "miRNA";
 	public static void main(String[] args) throws Exception {
@@ -24,6 +30,8 @@ public class TopologyMain {
 		builder.setBolt("EnergyBolt", new EnergyBolt(), 1).shuffleGrouping("SeedMatch","seedStream");
 
 		builder.setBolt("Accessibility", new AccessibilityBolt(), 1).shuffleGrouping("EnergyBolt","energyStream");
+		
+		//builder.setBolt("EOAR", new EnergyOfAnotherRegionsBolt(),1).shuffleGrouping("Accessibility","accessibilityStream");
 
 		builder.setBolt("Results", new resultsBolt(), 1).shuffleGrouping("Accessibility", "accessibilityStream");
 
@@ -36,7 +44,7 @@ public class TopologyMain {
 		} else {
 			LocalCluster cluster = new LocalCluster();
 			cluster.submitTopology(TOPOLOGY_NAME, config, builder.createTopology());
-			//Utils.sleep(100000);
+			Utils.sleep(10000);
 			cluster.shutdown();
 		}
 	}

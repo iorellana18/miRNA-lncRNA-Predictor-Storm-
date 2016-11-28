@@ -1,4 +1,4 @@
-package usach.miRNA;
+package common_features;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,6 +13,8 @@ import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.Values;
+
+import EDA.RNAStructure;
 
 public class EnergyBolt implements IRichBolt {
 
@@ -31,13 +33,9 @@ public class EnergyBolt implements IRichBolt {
 
 	@Override
 	public void execute(Tuple tuple) {
-		
-			String miRNA_id = tuple.getValueByField("miRNA_id").toString();
-			String miRNA = tuple.getValueByField("miRNA").toString();
-			String rev_mre = tuple.getValueByField("mre").toString(); // miRNA Reecognition Element
-			String lncRNA_id = tuple.getValueByField("lncRNA_id").toString();
-			String lncRNA = tuple.getValueByField("lncRNA").toString();
-			int position = (int)tuple.getValueByField("position");
+			RNAStructure RNA = (RNAStructure)tuple.getValueByField("RNA");
+			String miRNA = RNA.getMiRNA();
+			String rev_mre = RNA.getMre(); // miRNA Reecognition Element
 			
 	        String line;
 	        String execstr = "RNAcofold -p --noPS"; ///Revisar diferencia con RNAfold LLLLL, diferencias en energía -> free energy of another regions
@@ -93,7 +91,8 @@ public class EnergyBolt implements IRichBolt {
 	        System.out.println("IOException");
 	    }
 	        
-	       Values values = new Values(miRNA_id,miRNA,lncRNA_id,lncRNA,rev_mre,position,dg_binding,dg_duplex,Sequence,code);
+	        
+	       Values values = new Values(RNA,dg_binding,dg_duplex,Sequence,code);
 	       this.collector.emit("energyStream",tuple,values);
 		
 	}
@@ -106,7 +105,7 @@ public class EnergyBolt implements IRichBolt {
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declareStream("energyStream",new Fields("miRNA_id","miRNA","lncRNA_id","lncRNA","rev_mre","position","dg_binding","dg_duplex","sequence","code"));
+		declarer.declareStream("energyStream",new Fields("RNA","dg_binding","dg_duplex","sequence","code"));
 		
 	}
 

@@ -1,4 +1,4 @@
-package usach.miRNA;
+package common_features;
 
 import java.util.Map;
 
@@ -9,6 +9,8 @@ import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.Values;
+
+import EDA.RNAStructure;
 
 public class SeedMatchBolt implements IRichBolt {
 	/**
@@ -83,7 +85,8 @@ public class SeedMatchBolt implements IRichBolt {
 					// mre y pos son los diferentes en cada emit
 					// formato de energía requiere mre en dirección 5' - 3'
 					// ->rev_mre
-					Values values = new Values(miRNA_id,miRNA,rev_mre,lncRNA_id,lncRNA,position);
+					RNAStructure RNA = new RNAStructure(miRNA_id,miRNA,lncRNA_id,lncRNA,rev_mre,position);
+					Values values = new Values(RNA);
 					this.collector.emit("seedStream",tuple,values);
 					
 				}
@@ -106,7 +109,7 @@ public class SeedMatchBolt implements IRichBolt {
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declareStream("seedStream", new Fields("miRNA_id","miRNA","mre","lncRNA_id","lncRNA","position"));
+		declarer.declareStream("seedStream", new Fields("RNA"));
 
 	}
 

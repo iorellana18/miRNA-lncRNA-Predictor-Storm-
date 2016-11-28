@@ -5,6 +5,7 @@ public class RNAStructure {
 	private String miRNA;
 	private String lncRNA_id;
 	private String lncRNA;
+	private String mre;
 	private int position;
 	
 	public RNAStructure(){
@@ -15,11 +16,12 @@ public class RNAStructure {
 		this.setPosition(0);
 	}
 	
-	public RNAStructure(String miRNA_id,String miRNA,String lncRNA_id,String lncRNA,int position){
-		this.miRNA_id=miRNA_id;
+	public RNAStructure(String miRNA_id,String miRNA,String lncRNA_id,String lncRNA,String mre,int position){
+		this.setmiRNA_id(miRNA_id);
 		this.setMiRNA(miRNA);
 		this.setLncRNA_id(lncRNA);
 		this.setLncRNA(lncRNA);
+		this.setMre(mre);
 		this.setPosition(position);
 	}
 	
@@ -61,6 +63,14 @@ public class RNAStructure {
 
 	public void setPosition(int position) {
 		this.position = position;
+	}
+
+	public String getMre() {
+		return mre;
+	}
+
+	public void setMre(String mre) {
+		this.mre = mre;
 	}
 	
 }

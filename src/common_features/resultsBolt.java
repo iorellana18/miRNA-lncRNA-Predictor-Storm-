@@ -1,4 +1,4 @@
-package usach.miRNA;
+package common_features;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,9 +9,9 @@ import org.apache.storm.task.OutputCollector;
 import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.IRichBolt;
 import org.apache.storm.topology.OutputFieldsDeclarer;
-import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
-import org.apache.storm.tuple.Values;
+
+import EDA.RNAStructure;
 
 public class resultsBolt implements IRichBolt{
 
@@ -36,10 +36,8 @@ public class resultsBolt implements IRichBolt{
 
 	@Override
 	public void execute(Tuple tuple) {
-		   
-	    String miRNA_id = tuple.getValueByField("miRNA_id").toString();
-	    String lncRNA_id = tuple.getValueByField("lncRNA_id").toString();
-	    String position = tuple.getValueByField("position").toString();
+		RNAStructure RNA = (RNAStructure) tuple.getValueByField("RNA");
+	    String position = String.valueOf(RNA.getPosition());
 	    float dg_duplex = (float)tuple.getValueByField("DG_duplex");
 	    double dg_Open = (double)tuple.getValueByField("Open");
 	   
@@ -53,7 +51,7 @@ public class resultsBolt implements IRichBolt{
             try{
                 o = new FileOutputStream("/home/ian/Escritorio/results.csv",true);
                 //mir_id, lncRNA transcript id, position of seed in transcript, dG duplex, dG binding, dG open, ddG
-                o.write( (miRNA_id+","+lncRNA_id+","+position+","+strDuplex+","+result+"\n").getBytes() );
+                o.write( (RNA.getmiRNA_id()+","+RNA.getLncRNA_id()+","+position+","+strDuplex+","+result+"\n").getBytes() );
                 o.close();
             }catch(IOException e){
                 e.printStackTrace();
