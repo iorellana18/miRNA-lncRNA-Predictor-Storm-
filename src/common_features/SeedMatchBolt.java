@@ -85,6 +85,7 @@ public class SeedMatchBolt implements IRichBolt {
 					// mre y pos son los diferentes en cada emit
 					// formato de energía requiere mre en dirección 5' - 3'
 					// ->rev_mre
+					
 					RNAStructure RNA = new RNAStructure(miRNA_id,miRNA,lncRNA_id,lncRNA,rev_mre,position);
 					Values values = new Values(RNA);
 					this.collector.emit("seedStream",tuple,values);

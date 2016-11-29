@@ -9,7 +9,7 @@ public class RNAStructure {
 	private int position;
 	
 	public RNAStructure(){
-		this.miRNA_id=null;
+		this.setmiRNA_id(null);
 		this.setMiRNA(null);
 		this.setLncRNA_id(null);
 		this.setLncRNA(null);
@@ -19,7 +19,7 @@ public class RNAStructure {
 	public RNAStructure(String miRNA_id,String miRNA,String lncRNA_id,String lncRNA,String mre,int position){
 		this.setmiRNA_id(miRNA_id);
 		this.setMiRNA(miRNA);
-		this.setLncRNA_id(lncRNA);
+		this.setLncRNA_id(lncRNA_id);
 		this.setLncRNA(lncRNA);
 		this.setMre(mre);
 		this.setPosition(position);

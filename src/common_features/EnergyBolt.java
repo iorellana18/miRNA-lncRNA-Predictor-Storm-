@@ -90,7 +90,7 @@ public class EnergyBolt implements IRichBolt {
 	    }catch(IOException e){
 	        System.out.println("IOException");
 	    }
-	        
+	        System.out.println("\n"+RNA.getLncRNA_id()+"\n");
 	        
 	       Values values = new Values(RNA,dg_binding,dg_duplex,Sequence,code);
 	       this.collector.emit("energyStream",tuple,values);
