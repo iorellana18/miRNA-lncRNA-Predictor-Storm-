@@ -14,6 +14,7 @@ import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.Values;
 
+import EDA.EnergyStructure;
 import EDA.RNAStructure;
 
 public class EnergyBolt implements IRichBolt {
@@ -91,8 +92,10 @@ public class EnergyBolt implements IRichBolt {
 	        System.out.println("IOException");
 	    }
 	        System.out.println("\n"+RNA.getLncRNA_id()+"\n");
-	        
-	       Values values = new Values(RNA,dg_binding,dg_duplex,Sequence,code);
+	       
+	       EnergyStructure Energy = new EnergyStructure(dg_duplex,dg_binding);
+	       
+	       Values values = new Values(RNA,Energy,Sequence,code);
 	       this.collector.emit("energyStream",tuple,values);
 		
 	}
@@ -105,7 +108,7 @@ public class EnergyBolt implements IRichBolt {
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declareStream("energyStream",new Fields("RNA","dg_binding","dg_duplex","sequence","code"));
+		declarer.declareStream("energyStream",new Fields("RNA","Energy","sequence","code"));
 		
 	}
 

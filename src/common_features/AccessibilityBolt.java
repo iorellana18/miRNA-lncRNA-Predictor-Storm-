@@ -14,6 +14,7 @@ import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.Values;
 
+import EDA.EnergyStructure;
 import EDA.RNAStructure;
 
 public class AccessibilityBolt implements IRichBolt {
@@ -34,11 +35,12 @@ public class AccessibilityBolt implements IRichBolt {
 	@Override
 	public void execute(Tuple tuple) {
 		RNAStructure RNA = (RNAStructure) tuple.getValueByField("RNA");
+		EnergyStructure Energy = (EnergyStructure) tuple.getValueByField("Energy");
 		String miRNA = RNA.getMiRNA();
 		String lncRNA = RNA.getLncRNA();
 		String rev_mre = RNA.getMre();
-		float DG_binding = (float)tuple.getValueByField("dg_binding"); // revisar
-		float DG_duplex = (float)tuple.getValueByField("dg_duplex");
+		float DG_duplex = Energy.getMfe();
+		float binding = Energy.getBinding();
 		String Sequence = tuple.getValueByField("sequence").toString();
 		String code = tuple.getValueByField("code").toString();
 		
@@ -168,9 +170,12 @@ public class AccessibilityBolt implements IRichBolt {
 
         dgOpen = dg0 - dg1;
         double formated_dgOpen = Math.round(dgOpen*100.0) / 100.0;
-        //results r=new results();
-        //r.printResults(miRNA_id, miRNA, lncRNA_id, lncRNA, rev_mre, position, DG_duplex, DG_binding, formated_dgOpen);
-       this.collector.emit("accessibilityStream",new Values(RNA,DG_duplex,formated_dgOpen,Sequence,code));
+       
+       float AccessibilityEnergy= DG_duplex-(float)formated_dgOpen;
+        
+       Energy = new EnergyStructure(DG_duplex,binding,(float)formated_dgOpen,AccessibilityEnergy);
+        
+       this.collector.emit("accessibilityStream",new Values(RNA,Energy,Sequence,code));
        
 		
 	}
@@ -183,7 +188,7 @@ public class AccessibilityBolt implements IRichBolt {
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declareStream("accessibilityStream",new Fields("RNA","DG_duplex","Open","sequence","code"));
+		declarer.declareStream("accessibilityStream",new Fields("RNA","Energy","sequence","code"));
 		
 	}
 

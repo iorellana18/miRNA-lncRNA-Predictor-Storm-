@@ -11,6 +11,7 @@ import org.apache.storm.topology.IRichBolt;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.tuple.Tuple;
 
+import EDA.EnergyStructure;
 import EDA.RNAStructure;
 
 public class resultsBolt implements IRichBolt{
@@ -37,21 +38,21 @@ public class resultsBolt implements IRichBolt{
 	@Override
 	public void execute(Tuple tuple) {
 		RNAStructure RNA = (RNAStructure) tuple.getValueByField("RNA");
+		EnergyStructure Energy = (EnergyStructure)tuple.getValueByField("Energy");
+		
 	    String position = String.valueOf(RNA.getPosition());
-	    float dg_duplex = (float)tuple.getValueByField("DG_duplex");
-	    double dg_Open = (double)tuple.getValueByField("Open");
-	   
-        float result_ddg = dg_duplex - (float)dg_Open; 
-        String result = Float.toString(precision(2,result_ddg));//DG duplex(minimum free energy) - DG open
+	    float dg_duplex = Energy.getMfe();
+	    float accessibilityEnergy = Energy.getDGAccessibility();
         String strDuplex = Float.toString(dg_duplex);
+        String strAccess = Float.toString(accessibilityEnergy);
         
       //Generate CSV outfile
         FileOutputStream o;
-        if (result_ddg < 0) {
+        if (accessibilityEnergy < 0) {
             try{
                 o = new FileOutputStream("/home/ian/Escritorio/results.csv",true);
                 //mir_id, lncRNA transcript id, position of seed in transcript, dG duplex, dG binding, dG open, ddG
-                o.write( (RNA.getmiRNA_id()+","+RNA.getLncRNA_id()+","+position+","+strDuplex+","+result+"\n").getBytes() );
+                o.write( (RNA.getmiRNA_id()+","+RNA.getLncRNA_id()+","+position+","+strDuplex+","+strAccess+"\n").getBytes() );
                 o.close();
             }catch(IOException e){
                 e.printStackTrace();
