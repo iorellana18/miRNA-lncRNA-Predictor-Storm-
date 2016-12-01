@@ -16,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import EDA.EnergyStructure;
 import EDA.RNAStructure;
 
 public class EnergyOfAnotherRegionsBolt implements IRichBolt{
@@ -39,8 +40,16 @@ public class EnergyOfAnotherRegionsBolt implements IRichBolt{
         StringBuilder lncRNA_Region5 = new StringBuilder();
         
         RNAStructure RNA = (RNAStructure) tuple.getValueByField("RNA");
+        EnergyStructure energy = (EnergyStructure)tuple.getValueByField("Energy");
+        
         String miRNA = RNA.getMiRNA();
         String rev_mre = RNA.getMre();
+        String Sequence = (String)tuple.getValueByField("sequence");
+        String Code = (String)tuple.getValueByField("code");
+        float mfe = energy.getMfe();
+        float binding = energy.getBinding();
+        float open = energy.getDGOpen();
+        float accessibility = energy.getDGAccessibility();
         
         int miRNA_length = miRNA.length();
         int i=0, j=0;
@@ -138,12 +147,11 @@ public class EnergyOfAnotherRegionsBolt implements IRichBolt{
             System.out.println("IOExeotion");
         }
         
-        //System.out.println(mfe_Region3);
-        //System.out.println(mfe_Region5);
         
+        energy = new EnergyStructure(mfe,binding,open,accessibility,mfe_Region3,mfe_Region5);
        //Implementar EDA para Energias
-       // Values values = new Values(RNA,dg_duplex,dg_Open,Sequence,code,mfe_Region3,mfe_Region5);
-      //  this.collector.emit("EOARStream",tuple,values);
+        Values values = new Values(RNA,energy,Sequence,Code);
+        this.collector.emit("EOARStream",tuple,values);
 		
 	}
 
@@ -156,7 +164,7 @@ public class EnergyOfAnotherRegionsBolt implements IRichBolt{
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declareStream("EOARStream",new Fields());
+		declarer.declareStream("EOARStream",new Fields("RNA","Energy","Sequence","Code"));
 		
 	}
 

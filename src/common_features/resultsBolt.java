@@ -45,6 +45,8 @@ public class resultsBolt implements IRichBolt{
 	    float accessibilityEnergy = Energy.getDGAccessibility();
         String strDuplex = Float.toString(dg_duplex);
         String strAccess = Float.toString(accessibilityEnergy);
+        String E3 = Float.toString(Energy.getRegion3());
+        String E5 = Float.toString(Energy.getRegion5());
         
       //Generate CSV outfile
         FileOutputStream o;
@@ -52,7 +54,7 @@ public class resultsBolt implements IRichBolt{
             try{
                 o = new FileOutputStream("/home/ian/Escritorio/results.csv",true);
                 //mir_id, lncRNA transcript id, position of seed in transcript, dG duplex, dG binding, dG open, ddG
-                o.write( (RNA.getmiRNA_id()+","+RNA.getLncRNA_id()+","+position+","+strDuplex+","+strAccess+"\n").getBytes() );
+                o.write( (RNA.getmiRNA_id()+","+RNA.getLncRNA_id()+","+position+","+strDuplex+","+strAccess+","+E3+","+E5+"\n").getBytes() );
                 o.close();
             }catch(IOException e){
                 e.printStackTrace();

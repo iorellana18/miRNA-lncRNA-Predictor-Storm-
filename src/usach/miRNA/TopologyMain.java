@@ -31,9 +31,9 @@ public class TopologyMain {
 
 		builder.setBolt("Accessibility", new AccessibilityBolt(), 1).shuffleGrouping("EnergyBolt","energyStream");
 		
-		//builder.setBolt("EOAR", new EnergyOfAnotherRegionsBolt(),1).shuffleGrouping("Accessibility","accessibilityStream");
+		builder.setBolt("EOAR", new EnergyOfAnotherRegionsBolt(),1).shuffleGrouping("Accessibility","accessibilityStream");
 
-		builder.setBolt("Results", new resultsBolt(), 1).shuffleGrouping("Accessibility", "accessibilityStream");
+		builder.setBolt("Results", new resultsBolt(), 1).shuffleGrouping("EOAR", "EOARStream");
 
 		if (args != null && args.length > 0) {
 			try {
