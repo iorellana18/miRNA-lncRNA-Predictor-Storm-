@@ -57,17 +57,21 @@ public class AccessibilityBolt implements IRichBolt {
         //fix left side
         
         //Extrae 70 hacia adelante y hacia atras desde la posición de miRNA en lncRNA?
-        if ( ( (pos - window_length) < 0 ) ) {
-            window = lncRNA.substring( 0 , pos_f + window_length );
-        }
-        //fix right side
-        else if ( ( ( pos_f + window_length ) > lncRNA_length ) ){
-            window = lncRNA.substring( pos - window_length, lncRNA_length );
-        }
-        //fix nothing because it's not necessary 
-        else{
-            window = lncRNA.substring( pos - window_length , pos_f + window_length );
-        }
+        //if(lncRNA.length()>window_length){
+	        if ( ( (pos - window_length) < 0 ) ) {
+	            window = lncRNA.substring( 0 , pos_f + window_length );
+	        }
+	        //fix right side
+	        else if ( ( ( pos_f + window_length ) > lncRNA_length ) ){
+	            window = lncRNA.substring( pos - window_length, lncRNA_length );
+	        }
+	        //fix nothing because it's not necessary 
+	        else{
+	            window = lncRNA.substring( pos - window_length , pos_f + window_length );
+	        }
+       /* }else{
+        	window = lncRNA;
+        }*/
         //System.out.println(window);
         String line2;
         String line_;

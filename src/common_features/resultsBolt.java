@@ -25,7 +25,7 @@ public class resultsBolt implements IRichBolt{
 	private OutputCollector collector;
 	private Map config;
 	
-	private static Float precision(int decimalPlace, Float d) {
+	public static Float precision(int decimalPlace, Float d) {
         BigDecimal bd = new BigDecimal(Float.toString(d));
         bd = bd.setScale(decimalPlace, BigDecimal.ROUND_UP);
         return bd.floatValue();

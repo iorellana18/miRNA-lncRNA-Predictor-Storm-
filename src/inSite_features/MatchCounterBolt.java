@@ -139,9 +139,6 @@ public class MatchCounterBolt implements IRichBolt{
 	                        miRNA_bulge++;
 	                        newBulge=false;
 	                    }
-	                    if(meanChain.charAt(i-1)=='x'){
-	                       miRNA_bulge--;
-	                    }
 	                }else if(lncRNA_code.charAt(j)=='.'){
 	                    i--; nucleotidsOnBulge++;
 	                    meanChain.append(" ");meanmiRNA.append(" "); meanlncRNA.append(" ");
@@ -149,9 +146,6 @@ public class MatchCounterBolt implements IRichBolt{
 	                    if(newBulge){
 	                        lncRNA_bulge++;
 	                        newBulge=false;
-	                    }
-	                    if(meanChain.charAt(i-1)=='x'){
-	                       lncRNA_bulge--;
 	                    }
 	                }
 	             
