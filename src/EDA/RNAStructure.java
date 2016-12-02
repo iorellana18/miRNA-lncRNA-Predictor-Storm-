@@ -8,6 +8,12 @@ public class RNAStructure {
 	private String mre;
 	private int position;
 	
+	@Override
+	public String toString(){
+		String cadena = miRNA_id+","+lncRNA_id+","+String.valueOf(position)+",";
+		return cadena;
+	}
+	
 	public RNAStructure(){
 		this.setmiRNA_id(null);
 		this.setMiRNA(null);

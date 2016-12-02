@@ -43,22 +43,7 @@ public class resultsBolt implements IRichBolt{
 		EnergyStructure Energy = (EnergyStructure)tuple.getValueByField("Energy");
 		Stats stats = (Stats)tuple.getValueByField("Stats");
 		BindingArea area = (BindingArea)tuple.getValueByField("Area");
-		
-	    String position = String.valueOf(RNA.getPosition());
-        String strDuplex = Float.toString(Energy.getMfe());
-        String strAccess = Float.toString(Energy.getDGAccessibility());
-        String E3 = Float.toString(Energy.getRegion3());
-        String E5 = Float.toString(Energy.getRegion5());
-        String matches = Integer.toString(stats.getMatch());
-        String miss = Integer.toString(stats.getMiss());
-        String AU = Integer.toString(stats.getAU());
-        String GC = Integer.toString(stats.getGC());
-        String GU = Integer.toString(stats.getGU());
-        String c1 = area.getMiRNA_miss();
-        String c2 = area.getMiRNA();
-        String c3 = area.getLink();
-        String c4 = area.getLncRNA();
-        String c5 = area.getLncRNA_miss();
+
         
       //Generate CSV outfile
         FileOutputStream o;
@@ -66,13 +51,12 @@ public class resultsBolt implements IRichBolt{
             try{
                 o = new FileOutputStream("/home/ian/Escritorio/results.csv",true);
                 //mir_id, lncRNA transcript id, position of seed in transcript, dG duplex, dG binding, dG open, ddG
-                o.write( (RNA.getmiRNA_id()+","+RNA.getLncRNA_id()+","+position+","+strDuplex+","+strAccess+","+E3+","+E5+","+matches+","+miss+","+AU+","+GC+","+GU+","+c1+","+c2+","+c3+","+c4+","+c5+"\n").getBytes() );
+                o.write( (RNA.toString()+Energy.toString()+stats.toString()+area.toString()+"\n").getBytes() );
                 o.close();
             }catch(IOException e){
                 e.printStackTrace();
             }
         }
-
         
 		
 	}

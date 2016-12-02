@@ -1,6 +1,12 @@
-usach/miRNA/resultsBolt.class
-usach/miRNA/SeedMatchBolt.class
-usach/miRNA/RNASpout.class
-usach/miRNA/EnergyBolt.class
-usach/miRNA/AccessibilityBolt.class
+common_features/resultsBolt.class
+common_features/AccessibilityBolt.class
 usach/miRNA/TopologyMain.class
+usach/miRNA/RNASpout.class
+EDA/EnergyStructure.class
+common_features/SeedMatchBolt.class
+EDA/BindingArea.class
+common_features/EnergyBolt.class
+EDA/Stats.class
+inSite_features/MatchCounterBolt.class
+EDA/RNAStructure.class
+inSite_features/EnergyOfAnotherRegionsBolt.class

@@ -175,7 +175,7 @@ public class AccessibilityBolt implements IRichBolt {
         
        Energy = new EnergyStructure(DG_duplex,binding,(float)formated_dgOpen,AccessibilityEnergy);
         
-       this.collector.emit("accessibilityStream",new Values(RNA,Energy,Sequence,code));
+       this.collector.emit(new Values(RNA,Energy,Sequence,code));
        
 		
 	}
@@ -188,7 +188,7 @@ public class AccessibilityBolt implements IRichBolt {
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declareStream("accessibilityStream",new Fields("RNA","Energy","sequence","code"));
+		declarer.declare(new Fields("RNA","Energy","sequence","code"));
 		
 	}
 

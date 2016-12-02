@@ -7,6 +7,13 @@ public class BindingArea {
 	private String lncRNA;
 	private String lncRNA_miss;
 	
+	@Override
+	public String toString(){
+		String cadena="";
+		cadena=cadena+miRNA_miss+","+miRNA+","+link+","+lncRNA+","+lncRNA_miss;
+		return cadena;
+	}
+	
 	public BindingArea(){
 		this.setMiRNA_miss(null);
 		this.setMiRNA(null);

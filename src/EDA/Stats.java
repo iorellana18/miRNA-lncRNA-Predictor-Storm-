@@ -7,6 +7,12 @@ public class Stats {
 	private int GC;
 	private int AU;
 	
+	@Override
+	public String toString(){
+		String cadena=String.valueOf(match)+","+String.valueOf(miss)+","+String.valueOf(AU)+","+String.valueOf(GC)+","+String.valueOf(GU)+",";
+		return cadena;
+	}
+	
 	public Stats(){
 		this.setMatch(0);
 		this.setMiss(0);

@@ -188,7 +188,7 @@ public class MatchCounterBolt implements IRichBolt{
 	       BindingArea area = new BindingArea(cadena1,cadena2,cadena3,cadena4,cadena5);
 	       
 	       Values values = new Values(RNA,Energy,stats,area);
-	       collector.emit("counterStream",values);
+	       collector.emit(values);
 	}
 
 	@Override
@@ -199,7 +199,7 @@ public class MatchCounterBolt implements IRichBolt{
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declareStream("counterStream",new Fields("RNA","Energy","Stats","Area"));
+		declarer.declare(new Fields("RNA","Energy","Stats","Area"));
 		
 	}
 

@@ -8,6 +8,22 @@ public class EnergyStructure {
 	private float Region3;
 	private float Region5;
 	
+	@Override
+	public String toString(){
+		String cadena = "";
+		cadena=cadena+String.valueOf(mfe)+",";
+		if(DGAccessibility!=0){
+			cadena=cadena+String.valueOf(DGAccessibility)+",";
+		}
+		if(Region3!=0){
+			cadena=cadena+String.valueOf(Region3)+",";
+		}
+		if(Region5!=0){
+			cadena=cadena+String.valueOf(Region5)+",";
+		}
+		return cadena;
+	}
+	
 	public EnergyStructure(){
 		this.setMfe(0);
 		this.setBinding(0);

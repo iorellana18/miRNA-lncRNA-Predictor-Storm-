@@ -88,7 +88,7 @@ public class SeedMatchBolt implements IRichBolt {
 					
 					RNAStructure RNA = new RNAStructure(miRNA_id,miRNA,lncRNA_id,lncRNA,rev_mre,position);
 					Values values = new Values(RNA);
-					this.collector.emit("seedStream",tuple,values);
+					this.collector.emit(values);
 					
 				}
 
@@ -110,7 +110,7 @@ public class SeedMatchBolt implements IRichBolt {
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declareStream("seedStream", new Fields("RNA"));
+		declarer.declare( new Fields("RNA"));
 
 	}
 

@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
@@ -24,7 +25,7 @@ public class RNASpout implements IRichSpout{
 	private SpoutOutputCollector collector;
 	private TopologyContext context;
 	private Map conf;
-	Stack stack = new Stack();
+	Stack<String> stack = new Stack<String>();
 	
 	@Override
 	public void ack(Object arg0) {
@@ -60,7 +61,7 @@ public class RNASpout implements IRichSpout{
 	public void nextTuple() {
         while(stack.isEmpty()==false){
         	Values values = new Values(stack.pop());
-        	this.collector.emit("streamSpout",values);
+        	this.collector.emit(values);
         }
 	
 	}
@@ -75,8 +76,8 @@ public class RNASpout implements IRichSpout{
 		
 		//Lee archivos .fa y los guarda en buffer
         FileReader miRNA_Reader, lnc_Reader;
-        ArrayList<String> miRNA = new ArrayList();
-        ArrayList<String> lncRNA = new ArrayList();
+        List<String> miRNA = new ArrayList<String>();
+        List<String> lncRNA = new ArrayList<String>();
         try {
                 miRNA_Reader = new FileReader("/home/ian/Escritorio/mature_small.fa");
                 lnc_Reader = new FileReader("/home/ian/Escritorio/lnc_small.fa");
@@ -152,7 +153,7 @@ public class RNASpout implements IRichSpout{
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declareStream("streamSpout",new Fields("cadena"));
+		declarer.declare(new Fields("cadena"));
 		
 	}
 

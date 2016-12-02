@@ -151,7 +151,7 @@ public class EnergyOfAnotherRegionsBolt implements IRichBolt{
         energy = new EnergyStructure(mfe,binding,open,accessibility,mfe_Region3,mfe_Region5);
        //Implementar EDA para Energias
         Values values = new Values(RNA,energy,Sequence,Code);
-        this.collector.emit("EOARStream",tuple,values);
+        this.collector.emit(values);
 		
 	}
 
@@ -164,7 +164,7 @@ public class EnergyOfAnotherRegionsBolt implements IRichBolt{
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declareStream("EOARStream",new Fields("RNA","Energy","Sequence","Code"));
+		declarer.declare(new Fields("RNA","Energy","Sequence","Code"));
 		
 	}
 

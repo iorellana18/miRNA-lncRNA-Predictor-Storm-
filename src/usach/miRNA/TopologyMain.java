@@ -26,17 +26,17 @@ public class TopologyMain {
 
 		builder.setSpout("RNASpout", new RNASpout(), 1);
 
-		builder.setBolt("SeedMatch", new SeedMatchBolt(), 1).shuffleGrouping("RNASpout","streamSpout");
+		builder.setBolt("SeedMatch", new SeedMatchBolt(), 1).shuffleGrouping("RNASpout");
 
-		builder.setBolt("EnergyBolt", new EnergyBolt(), 1).shuffleGrouping("SeedMatch","seedStream");
+		builder.setBolt("EnergyBolt", new EnergyBolt(), 1).shuffleGrouping("SeedMatch");
 
-		builder.setBolt("Accessibility", new AccessibilityBolt(), 1).shuffleGrouping("EnergyBolt","energyStream");
+		builder.setBolt("Accessibility", new AccessibilityBolt(), 1).shuffleGrouping("EnergyBolt");
 		
-		builder.setBolt("EOAR", new EnergyOfAnotherRegionsBolt(),1).shuffleGrouping("Accessibility","accessibilityStream");
+		builder.setBolt("EOAR", new EnergyOfAnotherRegionsBolt(),1).shuffleGrouping("Accessibility");
 		
-		builder.setBolt("Counter",new MatchCounterBolt(),1).shuffleGrouping("EOAR","EOARStream");
+		builder.setBolt("Counter",new MatchCounterBolt(),1).shuffleGrouping("EOAR");
 
-		builder.setBolt("Results", new resultsBolt(), 1).shuffleGrouping("Counter", "counterStream");
+		builder.setBolt("Results", new resultsBolt(), 1).shuffleGrouping("Counter");
 
 		if (args != null && args.length > 0) {
 			try {
@@ -47,7 +47,7 @@ public class TopologyMain {
 		} else {
 			LocalCluster cluster = new LocalCluster();
 			cluster.submitTopology(TOPOLOGY_NAME, config, builder.createTopology());
-			Utils.sleep(10000);
+			Utils.sleep(100000);
 			cluster.shutdown();
 		}
 	}

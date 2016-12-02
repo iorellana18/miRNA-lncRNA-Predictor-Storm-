@@ -96,7 +96,7 @@ public class EnergyBolt implements IRichBolt {
 	       EnergyStructure Energy = new EnergyStructure(dg_duplex,dg_binding);
 	       
 	       Values values = new Values(RNA,Energy,Sequence,code);
-	       this.collector.emit("energyStream",tuple,values);
+	       this.collector.emit(values);
 		
 	}
 
@@ -108,7 +108,7 @@ public class EnergyBolt implements IRichBolt {
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declareStream("energyStream",new Fields("RNA","Energy","sequence","code"));
+		declarer.declare(new Fields("RNA","Energy","sequence","code"));
 		
 	}
 
