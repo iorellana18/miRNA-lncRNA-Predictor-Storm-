@@ -91,7 +91,7 @@ public class RNASpout implements IRichSpout{
         try{
                 o = new FileOutputStream("/home/ian/Escritorio/results.csv");
                 //mir_id, lncRNA transcript id, position of seed in transcript, dG duplex, dG binding, dG open, ddG
-                o.write( ("miRNA ID,lncRNA ID,Position of Binding,Mínimum Free Energy,Accessibility Energy,Energy Region 3,Energy Region 5,Matches,Missmatches,AU,GC,GU,Nucloetids on Bulge,Cadena1,Cadena2,Cadena3,Cadena4,Cadena5\n").getBytes() );
+                o.write( ("miRNA ID,lncRNA ID,Position of Binding,Mínimum Free Energy,Accessibility Energy,Energy Region 3,Energy Region 5,Matches,Missmatches,AU,GC,GU,Cadena1,Cadena2,Cadena3,Cadena4,Cadena5\n").getBytes() );
                 o.close();
             }catch(IOException e){
                 e.printStackTrace();
