@@ -47,7 +47,10 @@ public class SeedMatchBolt implements IRichBolt {
 
 	@Override
 	public void execute(Tuple tuple) {
-
+		if(tuple.getValueByField("cadena").toString().equals("LastTuple")){
+			Values value = new Values("LastTuple");
+			this.collector.emit(value);
+		}else{
 		// Obtiene cadena de spout
 		String[] parts =tuple.getValueByField("cadena").toString().split("LLLL");
 
@@ -98,14 +101,15 @@ public class SeedMatchBolt implements IRichBolt {
 			sup += 1;
 
 		}
-
+		}
 	}
 
 	@Override
 	public void prepare(Map mapConf, TopologyContext arg1, OutputCollector collector) {
 		this.collector = collector;
 		this.mapConf = mapConf;
-
+	
+		
 	}
 
 	@Override

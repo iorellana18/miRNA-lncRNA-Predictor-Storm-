@@ -34,7 +34,14 @@ public class EnergyBolt implements IRichBolt {
 
 	@Override
 	public void execute(Tuple tuple) {
+		if(tuple.getValueByField("RNA").toString().equals("LastTuple")){
+			Values value = new Values("LastTuple",null,null,null);
+			this.collector.emit(value);
+		}else{
 			RNAStructure RNA = (RNAStructure)tuple.getValueByField("RNA");
+			if(RNA.getIsLast()){
+				
+			}else{
 			String miRNA = RNA.getMiRNA();
 			String rev_mre = RNA.getMre(); // miRNA Reecognition Element
 			
@@ -91,13 +98,12 @@ public class EnergyBolt implements IRichBolt {
 	    }catch(IOException e){
 	        System.out.println("IOException");
 	    }
-	        System.out.println("\n"+RNA.getLncRNA_id()+"\n");
-	       
 	       EnergyStructure Energy = new EnergyStructure(dg_duplex,dg_binding);
 	       
 	       Values values = new Values(RNA,Energy,Sequence,code);
 	       this.collector.emit(values);
-		
+			}
+		}
 	}
 
 	@Override

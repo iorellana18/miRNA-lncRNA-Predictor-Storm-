@@ -79,8 +79,8 @@ public class RNASpout implements IRichSpout{
         List<String> miRNA = new ArrayList<String>();
         List<String> lncRNA = new ArrayList<String>();
         try {
-                miRNA_Reader = new FileReader("/home/ian/Escritorio/mature_small.fa");
-                lnc_Reader = new FileReader("/home/ian/Escritorio/lnc_small.fa");
+                miRNA_Reader = new FileReader("input/mature_small.fa");
+                lnc_Reader = new FileReader("input/lnc_small.fa");
         } catch (FileNotFoundException e) {
                 throw new RuntimeException("Error reading file");
         }
@@ -90,7 +90,7 @@ public class RNASpout implements IRichSpout{
         
         FileOutputStream o;
         try{
-                o = new FileOutputStream("/home/ian/Escritorio/results.csv");
+                o = new FileOutputStream("output/results.csv");
                 //mir_id, lncRNA transcript id, position of seed in transcript, dG duplex, dG binding, dG open, ddG
                 o.write( ("miRNA ID,lncRNA ID,Position of Binding,Mínimum Free Energy,Accessibility Energy,Energy Region 3,Energy Region 5,Matches,Missmatches,AU,GC,GU,Cadena1,Cadena2,Cadena3,Cadena4,Cadena5\n").getBytes() );
                 o.close();
@@ -138,15 +138,16 @@ public class RNASpout implements IRichSpout{
 		}finally{
                 //Envía todos los lncRNA con cada miRNA        
 			System.out.println("Sending data...");
-			int k=0;
+			String isLast;
+			stack.push("LastTuple");
 			for(int i = 0 ; i < miRNA.size() ; i++){
-				for(int j = 0; j < lncRNA.size() ; j++){k++;
+				for(int j = 0; j < lncRNA.size() ; j++){
 					//Formato: miRNA_id LLLL miRNA_code LLLL lncRNA_id LLLL lncRNA_code
+					
 					String str_to_send = miRNA.get(i) + "LLLL" + lncRNA.get(j);
 					stack.push(str_to_send);
-                
 				}
-			}	
+			}
 		} 
 		
 	}

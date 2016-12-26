@@ -30,6 +30,10 @@ public class MatchCounterBolt implements IRichBolt{
 
 	@Override
 	public void execute(Tuple tuple) {
+		if(tuple.getValueByField("RNA").toString().equals("LastTuple")){
+			Values value = new Values("LastTuple",null,null,null);
+			this.collector.emit(value);
+		}else{
 		RNAStructure RNA = (RNAStructure)tuple.getValueByField("RNA");
 		EnergyStructure Energy = (EnergyStructure)tuple.getValueByField("Energy");
 		String code = (String)tuple.getValueByField("Code");
@@ -183,6 +187,7 @@ public class MatchCounterBolt implements IRichBolt{
 	       
 	       Values values = new Values(RNA,Energy,stats,area);
 	       collector.emit(values);
+		}
 	}
 
 	@Override

@@ -32,6 +32,10 @@ public class EnergyOfAnotherRegionsBolt implements IRichBolt{
 
 	@Override
 	public void execute(Tuple tuple) {
+		if(tuple.getValueByField("RNA").toString().equals("LastTuple")){
+			Values value = new Values("LastTuple",null,null,null);
+			this.collector.emit(value);
+		}else{
         String line;
         String execstr = "RNAcofold -p --noPS"; ///Revisar diferencia con RNAfold LLLLL, diferencias en energía -> free energy of another regions
         StringBuilder miRNA_Region3 = new StringBuilder();
@@ -152,7 +156,7 @@ public class EnergyOfAnotherRegionsBolt implements IRichBolt{
        //Implementar EDA para Energias
         Values values = new Values(RNA,energy,Sequence,Code);
         this.collector.emit(values);
-		
+		}
 	}
 
 	@Override

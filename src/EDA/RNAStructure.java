@@ -7,6 +7,7 @@ public class RNAStructure {
 	private String lncRNA;
 	private String mre;
 	private int position;
+	private boolean isLast;
 	
 	@Override
 	public String toString(){
@@ -20,6 +21,16 @@ public class RNAStructure {
 		this.setLncRNA_id(null);
 		this.setLncRNA(null);
 		this.setPosition(0);
+		this.setIsLast(false);
+	}
+	
+	public RNAStructure(boolean isLast){
+		this.setmiRNA_id(null);
+		this.setMiRNA(null);
+		this.setLncRNA_id(null);
+		this.setLncRNA(null);
+		this.setPosition(0);
+		this.setIsLast(true);
 	}
 	
 	public RNAStructure(String miRNA_id,String miRNA,String lncRNA_id,String lncRNA,String mre,int position){
@@ -29,54 +40,21 @@ public class RNAStructure {
 		this.setLncRNA(lncRNA);
 		this.setMre(mre);
 		this.setPosition(position);
+		this.setIsLast(false);
 	}
 	
-	public String getmiRNA_id(){
-		return miRNA_id;
-	}
-	
-	public void setmiRNA_id(String miRNA_id){
-		this.miRNA_id=miRNA_id;
-	}
-
-	public String getMiRNA() {
-		return miRNA;
-	}
-
-	public void setMiRNA(String miRNA) {
-		this.miRNA = miRNA;
-	}
-
-	public String getLncRNA_id() {
-		return lncRNA_id;
-	}
-
-	public void setLncRNA_id(String lncRNA_id) {
-		this.lncRNA_id = lncRNA_id;
-	}
-
-	public String getLncRNA() {
-		return lncRNA;
-	}
-
-	public void setLncRNA(String lncRNA) {
-		this.lncRNA = lncRNA;
-	}
-
-	public int getPosition() {
-		return position;
-	}
-
-	public void setPosition(int position) {
-		this.position = position;
-	}
-
-	public String getMre() {
-		return mre;
-	}
-
-	public void setMre(String mre) {
-		this.mre = mre;
-	}
-	
+	public String getmiRNA_id(){return miRNA_id;}
+	public void setmiRNA_id(String miRNA_id){this.miRNA_id=miRNA_id;}
+	public String getMiRNA() {return miRNA;}
+	public void setMiRNA(String miRNA) {this.miRNA = miRNA;}
+	public String getLncRNA_id() {return lncRNA_id;}
+	public void setLncRNA_id(String lncRNA_id) {this.lncRNA_id = lncRNA_id;}
+	public String getLncRNA() {return lncRNA;}
+	public void setLncRNA(String lncRNA) {this.lncRNA = lncRNA;}
+	public int getPosition() {return position;}
+	public void setPosition(int position) {this.position = position;}
+	public String getMre() {return mre;}
+	public void setMre(String mre) {this.mre = mre;}
+	public boolean getIsLast(){return isLast;}
+	public void setIsLast(boolean isLast){this.isLast=isLast;}
 }

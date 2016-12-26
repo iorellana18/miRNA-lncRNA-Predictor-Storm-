@@ -34,6 +34,10 @@ public class AccessibilityBolt implements IRichBolt {
 
 	@Override
 	public void execute(Tuple tuple) {
+		if(tuple.getValueByField("RNA").toString().equals("LastTuple")){
+			Values value = new Values("LastTuple",null,null,null);
+			this.collector.emit(value);
+		}else{
 		RNAStructure RNA = (RNAStructure) tuple.getValueByField("RNA");
 		EnergyStructure Energy = (EnergyStructure) tuple.getValueByField("Energy");
 		String miRNA = RNA.getMiRNA();
@@ -180,7 +184,7 @@ public class AccessibilityBolt implements IRichBolt {
        Energy = new EnergyStructure(DG_duplex,binding,(float)formated_dgOpen,AccessibilityEnergy);
         
        this.collector.emit(new Values(RNA,Energy,Sequence,code));
-       
+		}
 		
 	}
 

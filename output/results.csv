@@ -1,0 +1,43 @@
+miRNA ID,lncRNA ID,Position of Binding,Mínimum Free Energy,Accessibility Energy,Energy Region 3,Energy Region 5,Matches,Missmatches,AU,GC,GU,Cadena1,Cadena2,Cadena3,Cadena4,Cadena5
+hsa-miR-4649-5p,ENST00000473358.1,164,-29.0,-10.67,-11.2,-14.3,16,12,2,13,1,U         GUGG    UCA   , GGGCGAGGG    GCUC   GAG, |||||||||    ||:|   |||, CCCGCUCCC    CGGG   CUC,G         GA--    C--   
+hsa-miR-4649-5p,ENST00000446136.1,1096,-28.6,-20.82,-8.1,-14.3,18,8,4,12,2,U         -     CUCUC    , GGGCGAGGG GUGGG     AGAG, ||||||||| :|||:     ||||, CCCGCUCCC UACCU     UCUC,G         G     -----    
+hsa-miR-4649-5p,ENST00000473798.1,359,-28.5,-24.46,-11.3,-13.6,14,19,2,12,0,U         G    CU UCAGAG, GGGCGAGGG UGGG  C      , ||||||||| ||||  |      , CCCGCUCCC ACCC  G      ,C         -    CU CUACCU
+hsa-miR-576-3p,ENST00000484859.1,1774,-26.3,-21.859999,-10.6,-8.3,20,4,12,7,1,          AA          ,AAGAUGUGGA  AAUUGGAAUC,||||||||||  ||||||||:|,UUCUACACCU  UUAACCUUGG,          CC          
+hsa-miR-133a-3p,ENST00000417636.1,335,-24.7,-9.490001,-6.7,-10.6,15,13,4,11,0,U         U  AA  A  UG, UUGGUCCCC UC  CC GC  , ||||||||| ||  || ||  , AACCAGGGG AG  GG CG  ,A         U  G-  A  UA
+hsa-miR-133a-3p,ENST00000441866.1,335,-24.7,-9.490001,-6.7,-10.6,15,13,4,11,0,U         U  AA  A  UG, UUGGUCCCC UC  CC GC  , ||||||||| ||  || ||  , AACCAGGGG AG  GG CG  ,A         U  G-  A  UA
+hsa-miR-133a-3p,ENST00000416570.5,603,-24.5,-15.45,-9.8,-10.6,16,10,6,10,0,U        CU-   A-     , UUGGUCCC   UCA  CCAGC, ||||||||   |||  |||||, AACCAGGG   AGU  GGUCG,A        UCU   GA     
+hsa-miR-133a-3p,ENST00000449005.5,629,-24.5,-17.54,-9.8,-10.6,16,10,6,10,0,U        CU-   A-     , UUGGUCCC   UCA  CCAGC, ||||||||   |||  |||||, AACCAGGG   AGU  GGUCG,A        UCU   GA     
+hsa-miR-133a-3p,ENST00000445118.6,541,-24.5,-17.54,-9.8,-10.6,16,10,6,10,0,U        CU-   A-     , UUGGUCCC   UCA  CCAGC, ||||||||   |||  |||||, AACCAGGG   AGU  GGUCG,A        UCU   GA     
+hsa-miR-5088-5p,ENST00000469289.1,443,-20.3,-12.709999,-5.9,-12.6,15,17,5,9,1,C       AGGGA    A-  G  , AGGGCUC     UUGG  UG AG, |||||||     :|||  || ||, UCCCGAG     GACC  AC UC,C       AGAAG    AA  G  
+hsa-miR-5088-5p,ENST00000473358.1,632,-20.3,-12.709999,-5.9,-12.6,15,17,5,9,1,C       AGGGA    A-  G  , AGGGCUC     UUGG  UG AG, |||||||     :|||  || ||, UCCCGAG     GACC  AC UC,C       AGAAG    AA  G  
+hsa-miR-5088-5p,ENST00000448179.1,132,-20.1,-4.92,-4.3,-14.6,15,17,4,9,2,        --    A   GAUGGAG,CAGGGCUC  AGGG UUG       ,||||||||  |:|| :||       ,GUCCCGAG  UUCC GAC       ,        GU    -   GAAACAG
+hsa-miR-548ao-3p,ENST00000591702.1,247,-17.9,0.2800007,-6.4,-9.4,17,8,5,8,4,A       U   U     U  A, AAGACCG GAC ACUUU GC , ||||||| :|| ||::: || , UUCUGGC UUG UGGGG CG ,C       -   -     U  G
+hsa-miR-557,ENST00000591702.1,45,-15.6,-8.790001,-6.8,-8.4,14,14,5,6,3,        ----     G CCUU,GUUUGCAC    GGGUG G    ,:|||||||    :|||| :    ,UAAACGUG    UCCAC U    ,        AGAC     G CUCU
+hsa-miR-576-3p,ENST00000609009.5,192,-15.3,-7.04,-3.7,-8.5,13,17,6,5,2,A        AAAAAUU     C, AGAUGUGG       GGAAU , ||||||||       :|||: , UCUACACC       UCUUG ,G        CUUACU-     A
+hsa-miR-576-3p,ENST00000416570.5,214,-15.3,-7.04,-3.7,-8.5,13,17,6,5,2,A        AAAAAUU     C, AGAUGUGG       GGAAU , ||||||||       :|||: , UCUACACC       UCUUG ,G        CUUACU-     A
+hsa-miR-576-3p,ENST00000449005.5,240,-15.3,-7.04,-3.7,-8.5,13,17,6,5,2,A        AAAAAUU     C, AGAUGUGG       GGAAU , ||||||||       :|||: , UCUACACC       UCUUG ,G        CUUACU-     A
+hsa-miR-576-3p,ENST00000608189.4,252,-15.3,-7.04,-3.7,-8.5,13,17,6,5,2,A        AAAAAUU     C, AGAUGUGG       GGAAU , ||||||||       :|||: , UCUACACC       UCUUG ,G        CUUACU-     A
+hsa-miR-576-3p,ENST00000610067.5,252,-15.3,-7.04,-3.7,-8.5,13,17,6,5,2,A        AAAAAUU     C, AGAUGUGG       GGAAU , ||||||||       :|||: , UCUACACC       UCUUG ,G        CUUACU-     A
+hsa-miR-576-3p,ENST00000448975.6,256,-15.3,-7.04,-3.7,-8.5,13,17,6,5,2,A        AAAAAUU     C, AGAUGUGG       GGAAU , ||||||||       :|||: , UCUACACC       UCUUG ,G        CUUACU-     A
+hsa-miR-576-3p,ENST00000624927.3,450,-15.3,-7.57,-3.7,-8.5,13,17,6,5,2,A        AAAAAUU     C, AGAUGUGG       GGAAU , ||||||||       :|||: , UCUACACC       UCUUG ,G        CUUACU-     A
+hsa-miR-576-3p,ENST00000412115.1,401,-15.0,-12.41,-1.9,-8.3,18,7,13,3,2,        G      UG    C,AAGAUGUG AAAAAU  GAAU ,|||||||| |||||:  :||| ,UUCUACAC UUUUUG  UUUA ,        G      U-    U
+hsa-miR-4743-3p,ENST00000473798.1,870,-14.8,-11.63,-6.0,-8.3,14,8,7,5,2,U          ------    , UUCUGUCUUU      UCUG, |||||||:|:      ||||, AAGACAGGAG      AGAC,U          GUAUAG    
+hsa-miR-576-3p,ENST00000484859.1,4519,-14.1,-4.8100004,-2.6,-8.5,10,24,4,6,0,A        AAAAAUU  AAUC, AGAUGUGG       GG    , ||||||||       ||    , UCUACACC       CC    ,G        ACCACGU  GUAC
+hsa-miR-576-3p,ENST00000607769.1,307,-13.9,-3.54,-3.8,-8.5,13,16,6,6,1,A       GAAAAA    AA  , AGAUGUG      UUGG  UC, |||||||      :|||  ||, UCUACAC      GACC  AG,G       GAAG--    CG  
+hsa-miR-576-3p,ENST00000484859.1,4655,-13.6,0.029999733,-2.8,-8.5,11,16,5,6,0,A        AAAAAU   AAUC, AGAUGUGG      UGG    , ||||||||      |||    , UCUACACC      ACC    ,G        ------   GAGU
+hsa-miR-4743-3p,ENST00000473358.1,422,-13.0,-10.9,-3.8,-8.5,11,17,6,5,0,U       UUU    GUCCAG, UUCUGUC   UCUG      , |||||||   ||||      , AAGACAG   AGAC      ,G       ---    ACUUAA
+hsa-miR-133a-3p,ENST00000634833.1,498,-12.9,-3.9099998,-1.7,-10.6,11,21,6,5,0,U       CCU    CCAGCUG, UUGGUCC   UCAA       , |||||||   ||||       , AACCAGG   AGUU       ,A       AC-    UCCCACU
+hsa-miR-4743-3p,ENST00000484859.1,4048,-12.8,-2.3900003,-3.3,-8.5,12,16,6,5,1,U       UUU--    G CC, UUCUGUC     UCUG U  , |||||||     :||| |  , AAGACAG     GGAC A  ,A       UGGAU    G AU
+hsa-miR-576-3p,ENST00000634833.1,889,-12.6,-1.54,-2.2,-8.5,11,21,5,5,1,A         AAAAUU  AAUC, AGAUGUGGA      GG    , |||||||:|      ||    , UCUACACUU      CC    ,G         CGACU-  GACU
+hsa-miR-576-3p,ENST00000417636.1,726,-12.6,-1.54,-2.2,-8.5,11,21,5,5,1,A         AAAAUU  AAUC, AGAUGUGGA      GG    , |||||||:|      ||    , UCUACACUU      CC    ,G         CGACU-  GACU
+hsa-miR-576-3p,ENST00000424587.6,667,-12.6,-2.5200005,-2.2,-8.5,11,21,5,5,1,A         AAAAUU  AAUC, AGAUGUGGA      GG    , |||||||:|      ||    , UCUACACUU      CC    ,G         CGACU-  GACU
+hsa-miR-576-3p,ENST00000448958.1,395,-12.6,-2.5200005,-2.2,-8.5,11,21,5,5,1,A         AAAAUU  AAUC, AGAUGUGGA      GG    , |||||||:|      ||    , UCUACACUU      CC    ,G         CGACU-  GACU
+hsa-miR-576-3p,ENST00000466430.5,671,-12.6,-2.5,-2.2,-8.5,11,21,5,5,1,A         AAAAUU  AAUC, AGAUGUGGA      GG    , |||||||:|      ||    , UCUACACUU      CC    ,G         CGACU-  GACU
+hsa-miR-548ao-3p,ENST00000457084.1,138,-12.5,-3.6899996,-2.2,-9.4,11,21,4,7,0,A       U  CUACUUUU-  , AAGACCG GA         GC, ||||||| ||         ||, UUCUGGC CU         CG,C       C  UCAGCAUUU  
+hsa-miR-548ao-3p,ENST00000434264.6,150,-12.5,-3.6899996,-2.2,-9.4,11,21,4,7,0,A       U  CUACUUUU-  , AAGACCG GA         GC, ||||||| ||         ||, UUCUGGC CU         CG,C       C  UCAGCAUUU  
+hsa-miR-522-5p,ENST00000432963.1,386,-11.8,-4.78,-1.6,-8.5,14,14,7,5,2,C        GAAG  C    UG, UCUAGAGG    CG UUUC  , |||||||:    |: ||||  , AGAUCUCU    GU AAAG  ,C        UAA-  -    UA
+hsa-miR-522-5p,ENST00000446136.1,1520,-11.8,-4.78,-1.6,-8.5,14,14,7,5,2,C        GAAG  C    UG, UCUAGAGG    CG UUUC  , |||||||:    |: ||||  , AGAUCUCU    GU AAAG  ,C        UAA-  -    UA
+hsa-miR-1298-5p,ENST00000466557.6,379,-11.6,-1.6700001,-4.0,-7.4,13,17,5,7,1,U       - C  UC   AUGU, UCAUUCG G UG  CAG    , ||||||| | :|  |||    , AGUAAGC C GC  GUC    ,C       U U  CC   GUGU
+hsa-miR-140-5p,ENST00000414688.5,404,-11.3,-6.6400003,-2.5,-8.3,7,12,4,3,0,C       U--------, AGUGGUU         , |||||||         , UCACCAA         ,U       UCUUUUAGU
+hsa-miR-140-5p,ENST00000455464.6,555,-11.3,-6.6400003,-2.5,-8.3,7,12,4,3,0,C       U--------, AGUGGUU         , |||||||         , UCACCAA         ,U       UCUUUUAGU
+hsa-miR-576-3p,ENST00000446136.1,746,-10.4,-0.4699993,-0.6,-8.5,11,21,7,4,0,A       G AAAA   GAAUC, AGAUGUG A    UUG     , ||||||| |    |||     , UCUACAC U    AAC     ,G       G AUC-   AGGAC

@@ -7,6 +7,7 @@ public class EnergyStructure {
 	private float DGAccessibility;
 	private float Region3;
 	private float Region5;
+	private int formatMfe;
 	
 	@Override
 	public String toString(){
@@ -40,6 +41,7 @@ public class EnergyStructure {
 		this.setDGAccessibility(0);
 		this.setRegion3(0);
 		this.setRegion5(0);
+		setFormatMfe(Integer.parseInt(String.valueOf(mfe).replace(".", "")));
 	}
 	
 	public EnergyStructure(float mfe, float binding, float DGOpen, float DGAccessibility){
@@ -49,6 +51,7 @@ public class EnergyStructure {
 		this.setDGAccessibility(DGAccessibility);
 		this.setRegion3(0);
 		this.setRegion5(0);
+		setFormatMfe(Integer.parseInt(String.valueOf(mfe).replace(".", "")));
 	}
 	
 	public EnergyStructure(float mfe, float binding, float DGOpen, float DGAccessibility, float Region3, float Region5 ){
@@ -58,54 +61,22 @@ public class EnergyStructure {
 		this.setDGAccessibility(DGAccessibility);
 		this.setRegion3(Region3);
 		this.setRegion5(Region5);
+		setFormatMfe(Integer.parseInt(String.valueOf(mfe).replace(".", "")));
 	}
-
-	public float getMfe() {
-		return mfe;
-	}
-
-	public void setMfe(float mfe) {
-		this.mfe = mfe;
-	}
-
-	public float getBinding() {
-		return binding;
-	}
-
-	public void setBinding(float binding) {
-		this.binding = binding;
-	}
-
-	public float getDGOpen() {
-		return DGOpen;
-	}
-
-	public void setDGOpen(float dGOpen) {
-		DGOpen = dGOpen;
-	}
-
-	public float getDGAccessibility() {
-		return DGAccessibility;
-	}
-
-	public void setDGAccessibility(float dGAccessibility) {
-		DGAccessibility = dGAccessibility;
-	}
-
-	public float getRegion3() {
-		return Region3;
-	}
-
-	public void setRegion3(float region3) {
-		Region3 = region3;
-	}
-
-	public float getRegion5() {
-		return Region5;
-	}
-
-	public void setRegion5(float region5) {
-		Region5 = region5;
-	}
+	
+	public float getMfe() {return mfe;}
+	public void setMfe(float mfe) {this.mfe = mfe;}
+	public float getBinding() {return binding;}
+	public void setBinding(float binding) {this.binding = binding;}
+	public float getDGOpen() {return DGOpen;}
+	public void setDGOpen(float dGOpen) {DGOpen = dGOpen;}
+	public float getDGAccessibility() {return DGAccessibility;}
+	public void setDGAccessibility(float dGAccessibility) {DGAccessibility = dGAccessibility;}
+	public float getRegion3() {return Region3;}
+	public void setRegion3(float region3) {Region3 = region3;}
+	public float getRegion5() {return Region5;}
+	public void setRegion5(float region5) {Region5 = region5;}
+	public void setFormatMfe(int formatMfe){this.formatMfe=formatMfe;}
+	public int getFormatMfe(){return formatMfe;}
 
 }
